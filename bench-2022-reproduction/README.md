@@ -13,7 +13,7 @@ The two articles are:
 go test -bench=. -benchmem -benchtime=2s -count=3
 ```
 
-The repository also has a manual [Benchmark workflow](https://github.com/winebarrel/go-gcshape-verification/actions/workflows/bench.yml). Running it runs the same command on `ubuntu-latest` or `macos-latest` (selectable as an input) and prints the results in the job summary.
+The repository also has a manual [Benchmark workflow](https://github.com/winebarrel/go-gcshape-verification/actions/workflows/bench.yml). Running it executes the same command on `ubuntu-latest` (x86) and `ubuntu-24.04-arm` and prints a combined comparison table in the job summary.
 
 ## Files
 
@@ -35,24 +35,26 @@ The five PlanetScale variants exercise the following:
 
 ## Headline result
 
-On Go 1.26.1, darwin/arm64 (Apple M4 Pro), the cost ratios versus `Monomorphized` are quite different from the 2022 PlanetScale numbers.
+The cost ratios versus `Monomorphized` were measured on Go 1.26.1 in three environments: the two GitHub-hosted Linux runners (via the Benchmark workflow, [run](https://github.com/winebarrel/go-gcshape-verification/actions/runs/27466670328)) and a local Apple M4 Pro.
 
-| Variant | 2022 (PlanetScale) | 2026 (this repo) |
-|---|---|---|
-| Monomorphized | 1.00x | 1.00x |
-| Iface | 1.35x | about 2.05x |
-| GenericWithPointer | 1.42x | about 2.07x |
-| GenericWithExactIface | 1.91x | about 1.41x |
-| GenericWithSuperIface | 3.48x | about 1.41x |
+| Variant | 2022 (PlanetScale) | linux/amd64 | linux/arm64 | darwin/arm64 (M4 Pro) |
+|---|---|---|---|---|
+| Monomorphized | 1.00x | 1.00x | 1.00x | 1.00x |
+| Iface | 1.35x | 1.70x | 1.46x | 2.05x |
+| GenericWithPointer | 1.42x | 1.72x | 1.53x | 2.07x |
+| GenericWithExactIface | 1.91x | 2.55x | 1.89x | 1.41x |
+| GenericWithSuperIface | 3.48x | 2.56x | 1.90x | 1.41x |
 
-The `GenericWithSuperIface` case in particular has shrunk from 3.48x to about 1.41x, which suggests the runtime's `assertI2I` path was optimised significantly between Go 1.18 and 1.26.
+Two things hold on every platform tested. Every indirect variant is still slower than the monomorphized function, and `GenericWithSuperIface` now costs the same as `GenericWithExactIface`. In 2022 the SuperIface case paid a large extra penalty for the `runtime.assertI2I` path (3.48x against 1.91x). That gap is gone.
 
-The DoltHub observation reproduces. Generic search over a value type runs at about 25% less time than interface-based search over the same value type. The allocation column makes the mechanism explicit: the generic value-type case is `0 B/op`, the others are `24 B/op`.
+Everything else is platform dependent. On the Linux runners the ordering matches 2022, with the interface-typed generic variants slowest at about 1.9x on arm64 and about 2.6x on amd64. On the M4 the ordering flips, and the interface-typed variants (about 1.41x) come out faster than `Iface` and `GenericWithPointer` (about 2.05x). No single machine's ratios, including these, should be quoted as the cost of Go generics in general.
+
+The DoltHub observation reproduces on all platforms. Generic search over a value type runs at 25 to 37 percent less time than interface-based search over the same value type. The allocation column makes the mechanism explicit: the generic value-type case is `0 B/op`, the others are `24 B/op`.
 
 ## Notes
 
 The PlanetScale reconstruction is structural, not byte-for-byte. Treat it as the same setup, not an exact replay of the original code.
 
-Absolute timings depend heavily on the CPU. M4 Pro is fast and modern, and the ratio against `Monomorphized` is what carries meaning across platforms.
+Relative ratios vary widely with the CPU, as the table above shows, and even the ordering of the variants can flip between platforms. Measure on the platforms you care about before drawing conclusions. Shared CI runners can also land on different hardware generations between runs, so quote results together with the run link and the reported CPU.
 
 The `strings.Builder` inside `EscapeMonomorphized` triggers internal resizing, so the allocation column here does not match the original article's allocation column. The ordering is still informative, but treat the absolute alloc numbers with caution.
