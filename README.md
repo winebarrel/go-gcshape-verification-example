@@ -24,7 +24,7 @@ go test -bench=. -benchmem -benchtime=2s -count=3
 
 Tested on Go 1.26.1. Benchmark results, including the ratios between variants, differ noticeably between platforms; see `bench-2022-reproduction/README.md` for numbers from linux/amd64, linux/arm64, and darwin/arm64.
 
-The benchmarks can also be run on GitHub-hosted runners via the [Benchmark workflow](https://github.com/winebarrel/go-gcshape-verification/actions/workflows/bench.yml), which runs them on both an x86 and an arm64 Linux runner and prints a combined comparison table in the run summary.
+The benchmarks can also be run on GitHub-hosted runners via the [Benchmark workflow](https://github.com/winebarrel/go-gcshape-verification-example/actions/workflows/bench.yml), which runs them on both an x86 and an arm64 Linux runner and prints a combined comparison table in the run summary.
 
 ## Notes
 

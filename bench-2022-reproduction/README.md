@@ -13,7 +13,7 @@ The two articles are:
 go test -bench=. -benchmem -benchtime=2s -count=3
 ```
 
-The repository also has a manual [Benchmark workflow](https://github.com/winebarrel/go-gcshape-verification/actions/workflows/bench.yml). Running it executes the same command on `ubuntu-latest` (x86) and `ubuntu-24.04-arm` and prints a combined comparison table in the job summary.
+The repository also has a manual [Benchmark workflow](https://github.com/winebarrel/go-gcshape-verification-example/actions/workflows/bench.yml). Running it executes the same command on `ubuntu-latest` (x86) and `ubuntu-24.04-arm` and prints a combined comparison table in the job summary.
 
 ## Files
 
@@ -35,7 +35,7 @@ The five PlanetScale variants exercise the following:
 
 ## Headline result
 
-The cost ratios versus `Monomorphized` were measured on Go 1.26.1 in three environments: the two GitHub-hosted Linux runners (via the Benchmark workflow, [run](https://github.com/winebarrel/go-gcshape-verification/actions/runs/27466670328)) and a local Apple M4 Pro.
+The cost ratios versus `Monomorphized` were measured on Go 1.26.1 in three environments: the two GitHub-hosted Linux runners (via the Benchmark workflow, [run](https://github.com/winebarrel/go-gcshape-verification-example/actions/runs/27466670328)) and a local Apple M4 Pro.
 
 | Variant | 2022 (PlanetScale) | linux/amd64 | linux/arm64 | darwin/arm64 (M4 Pro) |
 |---|---|---|---|---|
