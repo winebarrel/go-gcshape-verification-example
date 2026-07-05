@@ -35,21 +35,30 @@ The five PlanetScale variants exercise the following:
 
 ## Headline result
 
-The cost ratios versus `Monomorphized` were measured on Go 1.26.x in three environments: the two GitHub-hosted Linux runners (via the Benchmark workflow, [run](https://github.com/winebarrel/go-gcshape-verification-example/actions/runs/27466670328)) and a local Apple M4 Pro.
+The cost ratios versus `Monomorphized` were measured on Go 1.26.x in three environments: the two GitHub-hosted Linux runners (via the Benchmark workflow, [run](https://github.com/winebarrel/go-gcshape-verification-example/actions/runs/27466670328)) and a local Apple M5 Max.
 
-| Variant | 2022 (PlanetScale) | linux/amd64 | linux/arm64 | darwin/arm64 (M4 Pro) |
+| Variant | 2022 (PlanetScale) | linux/amd64 | linux/arm64 | darwin/arm64 (M5 Max) |
 |---|---|---|---|---|
 | Monomorphized | 1.00x | 1.00x | 1.00x | 1.00x |
-| Iface | 1.35x | 1.70x | 1.46x | 2.05x |
-| GenericWithPointer | 1.42x | 1.72x | 1.53x | 2.07x |
-| GenericWithExactIface | 1.91x | 2.55x | 1.89x | 1.41x |
-| GenericWithSuperIface | 3.48x | 2.56x | 1.90x | 1.41x |
+| Iface | 1.35x | 1.70x | 1.46x | 2.16x |
+| GenericWithPointer | 1.42x | 1.72x | 1.53x | 2.15x |
+| GenericWithExactIface | 1.91x | 2.55x | 1.89x | 1.37x |
+| GenericWithSuperIface | 3.48x | 2.56x | 1.90x | 1.37x |
 
 Two things hold on every platform tested. Every indirect variant is still slower than the monomorphized function, and `GenericWithSuperIface` now costs the same as `GenericWithExactIface`. In 2022 the SuperIface case paid a large extra penalty for the `runtime.assertI2I` path (3.48x against 1.91x). That gap is gone.
 
-Everything else is platform dependent. On the Linux runners the ordering matches 2022, with the interface-typed generic variants slowest at about 1.9x on arm64 and about 2.6x on amd64. On the M4 the ordering flips, and the interface-typed variants (about 1.41x) come out faster than `Iface` and `GenericWithPointer` (about 2.05x). No single machine's ratios, including these, should be quoted as the cost of Go generics in general.
+Everything else is platform dependent. On the Linux runners the ordering matches 2022, with the interface-typed generic variants slowest at about 1.9x on arm64 and about 2.6x on amd64. On the M5 the ordering flips, and the interface-typed variants (about 1.37x) come out faster than `Iface` and `GenericWithPointer` (about 2.15x). No single machine's ratios, including these, should be quoted as the cost of Go generics in general.
 
-The DoltHub observation reproduces on all platforms. Generic search over a value type runs at 25 to 37 percent less time than interface-based search over the same value type. The allocation column makes the mechanism explicit: the generic value-type case is `0 B/op`, the others are `24 B/op`.
+The DoltHub observation reproduces on all platforms. Value-type generic search runs 28 to 37 percent faster than interface-based search over the same value type (32% on amd64, 37% on arm64, 28% on darwin). The allocation column shows why: the generic value-type case is `0 B/op`, the others are `24 B/op`.
+
+| Variant | linux/amd64 | linux/arm64 | darwin/arm64 (M5 Max) | alloc |
+|---|---:|---:|---:|---|
+| interface, value type | 100.1 | 82.0 | 43.0 | 24 B/op |
+| generic, value type | 68.0 | 51.4 | 31.0 | 0 B/op |
+| interface, reference type | 103.3 | 78.5 | 41.4 | 24 B/op |
+| generic, reference type | 97.6 | 78.4 | 41.4 | 24 B/op |
+
+(ns/op; Linux from the same run above, darwin on M5 Max)
 
 ## Notes
 
