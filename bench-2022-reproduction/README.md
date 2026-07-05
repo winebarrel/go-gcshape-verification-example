@@ -1,6 +1,6 @@
 # bench-2022-reproduction
 
-Reproduces two well-known 2022 generics benchmarks on Go 1.26.1 and compares the numbers with the originals.
+Reproduces two well-known 2022 generics benchmarks on Go 1.26.x and compares the numbers with the originals.
 
 The two articles are:
 
@@ -35,7 +35,7 @@ The five PlanetScale variants exercise the following:
 
 ## Headline result
 
-The cost ratios versus `Monomorphized` were measured on Go 1.26.1 in three environments: the two GitHub-hosted Linux runners (via the Benchmark workflow, [run](https://github.com/winebarrel/go-gcshape-verification-example/actions/runs/27466670328)) and a local Apple M4 Pro.
+The cost ratios versus `Monomorphized` were measured on Go 1.26.x in three environments: the two GitHub-hosted Linux runners (via the Benchmark workflow, [run](https://github.com/winebarrel/go-gcshape-verification-example/actions/runs/27466670328)) and a local Apple M4 Pro.
 
 | Variant | 2022 (PlanetScale) | linux/amd64 | linux/arm64 | darwin/arm64 (M4 Pro) |
 |---|---|---|---|---|

@@ -1,0 +1,651 @@
+# Assembly excerpt for the generic functions in shape-basics (First / StoreFirst / Greet).
+# Toolchain: go1.26.x, darwin/arm64
+# Command: go build -gcflags="-S -l" -o /dev/null . 2> asm.txt
+#          (then filtered to the main.First / main.StoreFirst / main.Greet symbols)
+# Regenerate the full dump yourself; this file is a curated excerpt for reference.
+
+main.Greet[*main.UserB] STEXT dupok size=80 args=0x8 locals=0x18 funcid=0x17 align=0x0
+	0x0000 00000 (shape-basics/main.go:20)	TEXT	main.Greet[*main.UserB](SB), DUPOK|WRAPPER|ABIInternal, $32-8
+	0x0000 00000 (shape-basics/main.go:20)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:20)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:20)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:20)	BLS	52
+	0x000c 00012 (shape-basics/main.go:20)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:20)	MOVD.W	R30, -32(RSP)
+	0x0010 00016 (shape-basics/main.go:20)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:20)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$0, gclocals·wvjpxkknJ4nY1JtrArJJaw==(SB)
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$5, main.Greet[*main.UserB].arginfo1(SB)
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$6, main.Greet[*main.UserB].argliveinfo(SB)
+	0x0018 00024 (shape-basics/main.go:20)	PCDATA	$3, $1
+	0x0018 00024 (shape-basics/main.go:20)	MOVD	R0, R1
+	0x001c 00028 (shape-basics/main.go:20)	MOVD	$main..dict.Greet[*main.UserB](SB), R0
+	0x0024 00036 (shape-basics/main.go:20)	PCDATA	$1, $1
+	0x0024 00036 (shape-basics/main.go:20)	CALL	main.Greet[go.shape.*uint8](SB)
+	0x0028 00040 (shape-basics/main.go:20)	MOVD	-8(RSP), R29
+	0x002c 00044 (shape-basics/main.go:20)	MOVD.P	32(RSP), R30
+	0x0030 00048 (shape-basics/main.go:20)	RET	(R30)
+	0x0034 00052 (shape-basics/main.go:20)	NOP
+	0x0034 00052 (shape-basics/main.go:20)	PCDATA	$1, $-1
+	0x0034 00052 (shape-basics/main.go:20)	PCDATA	$0, $-2
+	0x0034 00052 (shape-basics/main.go:20)	MOVD	R0, 8(RSP)
+	0x0038 00056 (shape-basics/main.go:20)	MOVD	R30, R3
+	0x003c 00060 (shape-basics/main.go:20)	CALL	runtime.morestack_noctxt(SB)
+	0x0040 00064 (shape-basics/main.go:20)	PCDATA	$0, $-1
+	0x0040 00064 (shape-basics/main.go:20)	MOVD	8(RSP), R0
+	0x0044 00068 (shape-basics/main.go:20)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb 69 01 00 54 fe 0f 1e f8  ..@..c0.i..T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e1 03 00 aa 00 00 00 90  .....#..........
+	0x0020 00 00 00 91 00 00 00 94 fd 83 5f f8 fe 07 42 f8  .........._...B.
+	0x0030 c0 03 5f d6 e0 07 00 f9 e3 03 1e aa 00 00 00 94  .._.............
+	0x0040 e0 07 40 f9 ef ff ff 17 00 00 00 00 00 00 00 00  ..@.............
+	rel 28+8 t=R_ADDRARM64 main..dict.Greet[*main.UserB]+0
+	rel 36+4 t=R_CALLARM64 main.Greet[go.shape.*uint8]+0
+	rel 60+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.Greet[go.shape.*uint8] STEXT dupok size=112 args=0x10 locals=0x38 funcid=0x0 align=0x0
+	0x0000 00000 (shape-basics/main.go:20)	TEXT	main.Greet[go.shape.*uint8](SB), DUPOK|ABIInternal, $64-16
+	0x0000 00000 (shape-basics/main.go:20)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:20)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:20)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:20)	BLS	80
+	0x000c 00012 (shape-basics/main.go:20)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:20)	MOVD.W	R30, -64(RSP)
+	0x0010 00016 (shape-basics/main.go:20)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:20)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$0, gclocals·TswRR9Pia9Wsluv5u1sUnA==(SB)
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$5, main.Greet[go.shape.*uint8].arginfo1(SB)
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$6, main.Greet[go.shape.*uint8].argliveinfo(SB)
+	0x0018 00024 (shape-basics/main.go:20)	PCDATA	$3, $1
+	0x0018 00024 (shape-basics/main.go:21)	MOVD	(R0), R2
+	0x001c 00028 (shape-basics/main.go:21)	MOVD	R0, R26
+	0x0020 00032 (shape-basics/main.go:21)	MOVD	R1, R0
+	0x0024 00036 (shape-basics/main.go:21)	PCDATA	$1, $1
+	0x0024 00036 (shape-basics/main.go:21)	CALL	(R2)
+	0x0028 00040 (shape-basics/main.go:21)	MOVD	$4, R2
+	0x002c 00044 (shape-basics/main.go:21)	MOVD	R0, R3
+	0x0030 00048 (shape-basics/main.go:21)	MOVD	R1, R4
+	0x0034 00052 (shape-basics/main.go:21)	MOVD	ZR, R0
+	0x0038 00056 (shape-basics/main.go:21)	MOVD	$go:string."Hi, "(SB), R1
+	0x0040 00064 (shape-basics/main.go:21)	CALL	runtime.concatstring2(SB)
+	0x0044 00068 (shape-basics/main.go:21)	MOVD	-8(RSP), R29
+	0x0048 00072 (shape-basics/main.go:21)	MOVD.P	64(RSP), R30
+	0x004c 00076 (shape-basics/main.go:21)	RET	(R30)
+	0x0050 00080 (shape-basics/main.go:21)	NOP
+	0x0050 00080 (shape-basics/main.go:20)	PCDATA	$1, $-1
+	0x0050 00080 (shape-basics/main.go:20)	PCDATA	$0, $-2
+	0x0050 00080 (shape-basics/main.go:20)	STP	(R0, R1), 8(RSP)
+	0x0054 00084 (shape-basics/main.go:20)	MOVD	R30, R3
+	0x0058 00088 (shape-basics/main.go:20)	CALL	runtime.morestack_noctxt(SB)
+	0x005c 00092 (shape-basics/main.go:20)	PCDATA	$0, $-1
+	0x005c 00092 (shape-basics/main.go:20)	LDP	8(RSP), (R0, R1)
+	0x0060 00096 (shape-basics/main.go:20)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb 49 02 00 54 fe 0f 1c f8  ..@..c0.I..T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 02 00 40 f9 fa 03 00 aa  .....#....@.....
+	0x0020 e0 03 01 aa 40 00 3f d6 e2 03 7e b2 e3 03 00 aa  ....@.?...~.....
+	0x0030 e4 03 01 aa e0 03 1f aa 01 00 00 90 21 00 00 91  ............!...
+	0x0040 00 00 00 94 fd 83 5f f8 fe 07 44 f8 c0 03 5f d6  ......_...D..._.
+	0x0050 e0 87 00 a9 e3 03 1e aa 00 00 00 94 e0 87 40 a9  ..............@.
+	0x0060 e8 ff ff 17 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	rel 36+0 t=R_CALLIND +0
+	rel 56+8 t=R_ADDRARM64 go:string."Hi, "+0
+	rel 64+4 t=R_CALLARM64 runtime.concatstring2+0
+	rel 88+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.Greet[*main.UserA] STEXT dupok size=80 args=0x8 locals=0x18 funcid=0x17 align=0x0
+	0x0000 00000 (shape-basics/main.go:20)	TEXT	main.Greet[*main.UserA](SB), DUPOK|WRAPPER|ABIInternal, $32-8
+	0x0000 00000 (shape-basics/main.go:20)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:20)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:20)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:20)	BLS	52
+	0x000c 00012 (shape-basics/main.go:20)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:20)	MOVD.W	R30, -32(RSP)
+	0x0010 00016 (shape-basics/main.go:20)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:20)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$0, gclocals·wvjpxkknJ4nY1JtrArJJaw==(SB)
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$5, main.Greet[*main.UserA].arginfo1(SB)
+	0x0018 00024 (shape-basics/main.go:20)	FUNCDATA	$6, main.Greet[*main.UserA].argliveinfo(SB)
+	0x0018 00024 (shape-basics/main.go:20)	PCDATA	$3, $1
+	0x0018 00024 (shape-basics/main.go:20)	MOVD	R0, R1
+	0x001c 00028 (shape-basics/main.go:20)	MOVD	$main..dict.Greet[*main.UserA](SB), R0
+	0x0024 00036 (shape-basics/main.go:20)	PCDATA	$1, $1
+	0x0024 00036 (shape-basics/main.go:20)	CALL	main.Greet[go.shape.*uint8](SB)
+	0x0028 00040 (shape-basics/main.go:20)	MOVD	-8(RSP), R29
+	0x002c 00044 (shape-basics/main.go:20)	MOVD.P	32(RSP), R30
+	0x0030 00048 (shape-basics/main.go:20)	RET	(R30)
+	0x0034 00052 (shape-basics/main.go:20)	NOP
+	0x0034 00052 (shape-basics/main.go:20)	PCDATA	$1, $-1
+	0x0034 00052 (shape-basics/main.go:20)	PCDATA	$0, $-2
+	0x0034 00052 (shape-basics/main.go:20)	MOVD	R0, 8(RSP)
+	0x0038 00056 (shape-basics/main.go:20)	MOVD	R30, R3
+	0x003c 00060 (shape-basics/main.go:20)	CALL	runtime.morestack_noctxt(SB)
+	0x0040 00064 (shape-basics/main.go:20)	PCDATA	$0, $-1
+	0x0040 00064 (shape-basics/main.go:20)	MOVD	8(RSP), R0
+	0x0044 00068 (shape-basics/main.go:20)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb 69 01 00 54 fe 0f 1e f8  ..@..c0.i..T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e1 03 00 aa 00 00 00 90  .....#..........
+	0x0020 00 00 00 91 00 00 00 94 fd 83 5f f8 fe 07 42 f8  .........._...B.
+	0x0030 c0 03 5f d6 e0 07 00 f9 e3 03 1e aa 00 00 00 94  .._.............
+	0x0040 e0 07 40 f9 ef ff ff 17 00 00 00 00 00 00 00 00  ..@.............
+	rel 28+8 t=R_ADDRARM64 main..dict.Greet[*main.UserA]+0
+	rel 36+4 t=R_CALLARM64 main.Greet[go.shape.*uint8]+0
+	rel 60+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.StoreFirst[go.shape.int] STEXT dupok size=96 args=0x28 locals=0x8 funcid=0x0 align=0x0
+	0x0000 00000 (shape-basics/main.go:11)	TEXT	main.StoreFirst[go.shape.int](SB), DUPOK|ABIInternal, $16-40
+	0x0000 00000 (shape-basics/main.go:11)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:11)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:11)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:11)	BLS	56
+	0x000c 00012 (shape-basics/main.go:11)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:11)	MOVD.W	R30, -16(RSP)
+	0x0010 00016 (shape-basics/main.go:11)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:11)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:11)	MOVD	R1, main.xs+8(FP)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$0, gclocals·Ih7UaEzxol4qYE7mnpMg6w==(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$5, main.StoreFirst[go.shape.int].arginfo1(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$6, main.StoreFirst[go.shape.int].argliveinfo(SB)
+	0x001c 00028 (shape-basics/main.go:11)	PCDATA	$3, $1
+	0x001c 00028 (shape-basics/main.go:12)	CBZ	R2, 48
+	0x0020 00032 (shape-basics/main.go:12)	MOVD	R4, (R1)
+	0x0024 00036 (shape-basics/main.go:13)	MOVD	-8(RSP), R29
+	0x0028 00040 (shape-basics/main.go:13)	MOVD.P	16(RSP), R30
+	0x002c 00044 (shape-basics/main.go:13)	RET	(R30)
+	0x0030 00048 (shape-basics/main.go:12)	PCDATA	$1, $1
+	0x0030 00048 (shape-basics/main.go:12)	PCDATA	$4, $0
+	0x0030 00048 (shape-basics/main.go:12)	CALL	runtime.panicBounds(SB)
+	0x0034 00052 (shape-basics/main.go:12)	HINT	$0
+	0x0038 00056 (shape-basics/main.go:12)	NOP
+	0x0038 00056 (shape-basics/main.go:11)	PCDATA	$1, $-1
+	0x0038 00056 (shape-basics/main.go:11)	PCDATA	$0, $-2
+	0x0038 00056 (shape-basics/main.go:11)	STP	(R0, R1), 8(RSP)
+	0x003c 00060 (shape-basics/main.go:11)	STP	(R2, R3), 24(RSP)
+	0x0040 00064 (shape-basics/main.go:11)	MOVD	R4, 40(RSP)
+	0x0044 00068 (shape-basics/main.go:11)	MOVD	R30, R3
+	0x0048 00072 (shape-basics/main.go:11)	CALL	runtime.morestack_noctxt(SB)
+	0x004c 00076 (shape-basics/main.go:11)	PCDATA	$0, $-1
+	0x004c 00076 (shape-basics/main.go:11)	LDP	8(RSP), (R0, R1)
+	0x0050 00080 (shape-basics/main.go:11)	LDP	24(RSP), (R2, R3)
+	0x0054 00084 (shape-basics/main.go:11)	MOVD	40(RSP), R4
+	0x0058 00088 (shape-basics/main.go:11)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb 89 01 00 54 fe 0f 1f f8  ..@..c0....T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e1 13 00 f9 a2 00 00 b4  .....#..........
+	0x0020 24 00 00 f9 fd 83 5f f8 fe 07 41 f8 c0 03 5f d6  $....._...A..._.
+	0x0030 00 00 00 94 1f 20 03 d5 e0 87 00 a9 e2 8f 01 a9  ..... ..........
+	0x0040 e4 17 00 f9 e3 03 1e aa 00 00 00 94 e0 87 40 a9  ..............@.
+	0x0050 e2 8f 41 a9 e4 17 40 f9 ea ff ff 17 00 00 00 00  ..A...@.........
+	rel 48+4 t=R_CALLARM64 runtime.panicBounds+0
+	rel 72+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.StoreFirst[int] STEXT dupok size=96 args=0x20 locals=0x38 funcid=0x17 align=0x0
+	0x0000 00000 (shape-basics/main.go:11)	TEXT	main.StoreFirst[int](SB), DUPOK|WRAPPER|ABIInternal, $64-32
+	0x0000 00000 (shape-basics/main.go:11)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:11)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:11)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:11)	BLS	68
+	0x000c 00012 (shape-basics/main.go:11)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:11)	MOVD.W	R30, -64(RSP)
+	0x0010 00016 (shape-basics/main.go:11)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:11)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:11)	MOVD	R0, main.xs(FP)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$0, gclocals·wvjpxkknJ4nY1JtrArJJaw==(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$5, main.StoreFirst[int].arginfo1(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$6, main.StoreFirst[int].argliveinfo(SB)
+	0x001c 00028 (shape-basics/main.go:11)	PCDATA	$3, $1
+	0x001c 00028 (shape-basics/main.go:11)	MOVD	R3, R4
+	0x0020 00032 (shape-basics/main.go:11)	MOVD	R2, R3
+	0x0024 00036 (shape-basics/main.go:11)	MOVD	R1, R2
+	0x0028 00040 (shape-basics/main.go:11)	MOVD	R0, R1
+	0x002c 00044 (shape-basics/main.go:11)	MOVD	$main..dict.StoreFirst[int](SB), R0
+	0x0034 00052 (shape-basics/main.go:11)	PCDATA	$1, $1
+	0x0034 00052 (shape-basics/main.go:11)	CALL	main.StoreFirst[go.shape.int](SB)
+	0x0038 00056 (shape-basics/main.go:11)	MOVD	-8(RSP), R29
+	0x003c 00060 (shape-basics/main.go:11)	MOVD.P	64(RSP), R30
+	0x0040 00064 (shape-basics/main.go:11)	RET	(R30)
+	0x0044 00068 (shape-basics/main.go:11)	NOP
+	0x0044 00068 (shape-basics/main.go:11)	PCDATA	$1, $-1
+	0x0044 00068 (shape-basics/main.go:11)	PCDATA	$0, $-2
+	0x0044 00068 (shape-basics/main.go:11)	STP	(R0, R1), 8(RSP)
+	0x0048 00072 (shape-basics/main.go:11)	STP	(R2, R3), 24(RSP)
+	0x004c 00076 (shape-basics/main.go:11)	MOVD	R30, R3
+	0x0050 00080 (shape-basics/main.go:11)	CALL	runtime.morestack_noctxt(SB)
+	0x0054 00084 (shape-basics/main.go:11)	PCDATA	$0, $-1
+	0x0054 00084 (shape-basics/main.go:11)	LDP	8(RSP), (R0, R1)
+	0x0058 00088 (shape-basics/main.go:11)	LDP	24(RSP), (R2, R3)
+	0x005c 00092 (shape-basics/main.go:11)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb e9 01 00 54 fe 0f 1c f8  ..@..c0....T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e0 27 00 f9 e4 03 03 aa  .....#...'......
+	0x0020 e3 03 02 aa e2 03 01 aa e1 03 00 aa 00 00 00 90  ................
+	0x0030 00 00 00 91 00 00 00 94 fd 83 5f f8 fe 07 44 f8  .........._...D.
+	0x0040 c0 03 5f d6 e0 87 00 a9 e2 8f 01 a9 e3 03 1e aa  .._.............
+	0x0050 00 00 00 94 e0 87 40 a9 e2 8f 41 a9 e9 ff ff 17  ......@...A.....
+	rel 44+8 t=R_ADDRARM64 main..dict.StoreFirst[int]+0
+	rel 52+4 t=R_CALLARM64 main.StoreFirst[go.shape.int]+0
+	rel 80+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.StoreFirst[*string] STEXT dupok size=96 args=0x20 locals=0x38 funcid=0x17 align=0x0
+	0x0000 00000 (shape-basics/main.go:11)	TEXT	main.StoreFirst[*string](SB), DUPOK|WRAPPER|ABIInternal, $64-32
+	0x0000 00000 (shape-basics/main.go:11)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:11)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:11)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:11)	BLS	68
+	0x000c 00012 (shape-basics/main.go:11)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:11)	MOVD.W	R30, -64(RSP)
+	0x0010 00016 (shape-basics/main.go:11)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:11)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:11)	MOVD	R0, main.xs(FP)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$0, gclocals·cC5rNmVCHyCv6uELS7ccGw==(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$5, main.StoreFirst[*string].arginfo1(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$6, main.StoreFirst[*string].argliveinfo(SB)
+	0x001c 00028 (shape-basics/main.go:11)	PCDATA	$3, $1
+	0x001c 00028 (shape-basics/main.go:11)	MOVD	R3, R4
+	0x0020 00032 (shape-basics/main.go:11)	MOVD	R2, R3
+	0x0024 00036 (shape-basics/main.go:11)	MOVD	R1, R2
+	0x0028 00040 (shape-basics/main.go:11)	MOVD	R0, R1
+	0x002c 00044 (shape-basics/main.go:11)	MOVD	$main..dict.StoreFirst[*string](SB), R0
+	0x0034 00052 (shape-basics/main.go:11)	PCDATA	$1, $1
+	0x0034 00052 (shape-basics/main.go:11)	CALL	main.StoreFirst[go.shape.*uint8](SB)
+	0x0038 00056 (shape-basics/main.go:11)	MOVD	-8(RSP), R29
+	0x003c 00060 (shape-basics/main.go:11)	MOVD.P	64(RSP), R30
+	0x0040 00064 (shape-basics/main.go:11)	RET	(R30)
+	0x0044 00068 (shape-basics/main.go:11)	NOP
+	0x0044 00068 (shape-basics/main.go:11)	PCDATA	$1, $-1
+	0x0044 00068 (shape-basics/main.go:11)	PCDATA	$0, $-2
+	0x0044 00068 (shape-basics/main.go:11)	STP	(R0, R1), 8(RSP)
+	0x0048 00072 (shape-basics/main.go:11)	STP	(R2, R3), 24(RSP)
+	0x004c 00076 (shape-basics/main.go:11)	MOVD	R30, R3
+	0x0050 00080 (shape-basics/main.go:11)	CALL	runtime.morestack_noctxt(SB)
+	0x0054 00084 (shape-basics/main.go:11)	PCDATA	$0, $-1
+	0x0054 00084 (shape-basics/main.go:11)	LDP	8(RSP), (R0, R1)
+	0x0058 00088 (shape-basics/main.go:11)	LDP	24(RSP), (R2, R3)
+	0x005c 00092 (shape-basics/main.go:11)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb e9 01 00 54 fe 0f 1c f8  ..@..c0....T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e0 27 00 f9 e4 03 03 aa  .....#...'......
+	0x0020 e3 03 02 aa e2 03 01 aa e1 03 00 aa 00 00 00 90  ................
+	0x0030 00 00 00 91 00 00 00 94 fd 83 5f f8 fe 07 44 f8  .........._...D.
+	0x0040 c0 03 5f d6 e0 87 00 a9 e2 8f 01 a9 e3 03 1e aa  .._.............
+	0x0050 00 00 00 94 e0 87 40 a9 e2 8f 41 a9 e9 ff ff 17  ......@...A.....
+	rel 44+8 t=R_ADDRARM64 main..dict.StoreFirst[*string]+0
+	rel 52+4 t=R_CALLARM64 main.StoreFirst[go.shape.*uint8]+0
+	rel 80+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.StoreFirst[go.shape.*uint8] STEXT dupok size=128 args=0x28 locals=0x8 funcid=0x0 align=0x0
+	0x0000 00000 (shape-basics/main.go:11)	TEXT	main.StoreFirst[go.shape.*uint8](SB), DUPOK|ABIInternal, $16-40
+	0x0000 00000 (shape-basics/main.go:11)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:11)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:11)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:11)	BLS	80
+	0x000c 00012 (shape-basics/main.go:11)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:11)	MOVD.W	R30, -16(RSP)
+	0x0010 00016 (shape-basics/main.go:11)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:11)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:11)	MOVD	R1, main.xs+8(FP)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$0, gclocals·cMX7AubzoSk3mITl8qfSeQ==(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$5, main.StoreFirst[go.shape.*uint8].arginfo1(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$6, main.StoreFirst[go.shape.*uint8].argliveinfo(SB)
+	0x001c 00028 (shape-basics/main.go:11)	PCDATA	$3, $1
+	0x001c 00028 (shape-basics/main.go:12)	CBZ	R2, 72
+	0x0020 00032 (shape-basics/main.go:12)	PCDATA	$0, $-3
+	0x0020 00032 (shape-basics/main.go:12)	MOVWU	runtime.writeBarrier(SB), R0
+	0x0028 00040 (shape-basics/main.go:12)	PCDATA	$0, $-1
+	0x0028 00040 (shape-basics/main.go:12)	PCDATA	$0, $-2
+	0x0028 00040 (shape-basics/main.go:12)	CBZW	R0, 56
+	0x002c 00044 (shape-basics/main.go:12)	MOVD	(R1), R0
+	0x0030 00048 (shape-basics/main.go:12)	CALL	runtime.gcWriteBarrier2(SB)
+	0x0034 00052 (shape-basics/main.go:12)	STP	(R4, R0), (R25)
+	0x0038 00056 (shape-basics/main.go:12)	MOVD	R4, (R1)
+	0x003c 00060 (shape-basics/main.go:13)	PCDATA	$0, $-1
+	0x003c 00060 (shape-basics/main.go:13)	MOVD	-8(RSP), R29
+	0x0040 00064 (shape-basics/main.go:13)	MOVD.P	16(RSP), R30
+	0x0044 00068 (shape-basics/main.go:13)	RET	(R30)
+	0x0048 00072 (shape-basics/main.go:12)	PCDATA	$1, $1
+	0x0048 00072 (shape-basics/main.go:12)	PCDATA	$4, $0
+	0x0048 00072 (shape-basics/main.go:12)	CALL	runtime.panicBounds(SB)
+	0x004c 00076 (shape-basics/main.go:12)	HINT	$0
+	0x0050 00080 (shape-basics/main.go:12)	NOP
+	0x0050 00080 (shape-basics/main.go:11)	PCDATA	$1, $-1
+	0x0050 00080 (shape-basics/main.go:11)	PCDATA	$0, $-2
+	0x0050 00080 (shape-basics/main.go:11)	STP	(R0, R1), 8(RSP)
+	0x0054 00084 (shape-basics/main.go:11)	STP	(R2, R3), 24(RSP)
+	0x0058 00088 (shape-basics/main.go:11)	MOVD	R4, 40(RSP)
+	0x005c 00092 (shape-basics/main.go:11)	MOVD	R30, R3
+	0x0060 00096 (shape-basics/main.go:11)	CALL	runtime.morestack_noctxt(SB)
+	0x0064 00100 (shape-basics/main.go:11)	PCDATA	$0, $-1
+	0x0064 00100 (shape-basics/main.go:11)	LDP	8(RSP), (R0, R1)
+	0x0068 00104 (shape-basics/main.go:11)	LDP	24(RSP), (R2, R3)
+	0x006c 00108 (shape-basics/main.go:11)	MOVD	40(RSP), R4
+	0x0070 00112 (shape-basics/main.go:11)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb 49 02 00 54 fe 0f 1f f8  ..@..c0.I..T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e1 13 00 f9 62 01 00 b4  .....#......b...
+	0x0020 1b 00 00 90 60 03 40 b9 80 00 00 34 20 00 40 f9  ....`.@....4 .@.
+	0x0030 00 00 00 94 24 03 00 a9 24 00 00 f9 fd 83 5f f8  ....$...$....._.
+	0x0040 fe 07 41 f8 c0 03 5f d6 00 00 00 94 1f 20 03 d5  ..A..._...... ..
+	0x0050 e0 87 00 a9 e2 8f 01 a9 e4 17 00 f9 e3 03 1e aa  ................
+	0x0060 00 00 00 94 e0 87 40 a9 e2 8f 41 a9 e4 17 40 f9  ......@...A...@.
+	0x0070 e4 ff ff 17 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	rel 32+8 t=R_ARM64_PCREL_LDST32 runtime.writeBarrier+0
+	rel 48+4 t=R_CALLARM64 runtime.gcWriteBarrier2+0
+	rel 72+4 t=R_CALLARM64 runtime.panicBounds+0
+	rel 96+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.StoreFirst[*int] STEXT dupok size=96 args=0x20 locals=0x38 funcid=0x17 align=0x0
+	0x0000 00000 (shape-basics/main.go:11)	TEXT	main.StoreFirst[*int](SB), DUPOK|WRAPPER|ABIInternal, $64-32
+	0x0000 00000 (shape-basics/main.go:11)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:11)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:11)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:11)	BLS	68
+	0x000c 00012 (shape-basics/main.go:11)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:11)	MOVD.W	R30, -64(RSP)
+	0x0010 00016 (shape-basics/main.go:11)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:11)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:11)	MOVD	R0, main.xs(FP)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$0, gclocals·cC5rNmVCHyCv6uELS7ccGw==(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$5, main.StoreFirst[*int].arginfo1(SB)
+	0x001c 00028 (shape-basics/main.go:11)	FUNCDATA	$6, main.StoreFirst[*int].argliveinfo(SB)
+	0x001c 00028 (shape-basics/main.go:11)	PCDATA	$3, $1
+	0x001c 00028 (shape-basics/main.go:11)	MOVD	R3, R4
+	0x0020 00032 (shape-basics/main.go:11)	MOVD	R2, R3
+	0x0024 00036 (shape-basics/main.go:11)	MOVD	R1, R2
+	0x0028 00040 (shape-basics/main.go:11)	MOVD	R0, R1
+	0x002c 00044 (shape-basics/main.go:11)	MOVD	$main..dict.StoreFirst[*int](SB), R0
+	0x0034 00052 (shape-basics/main.go:11)	PCDATA	$1, $1
+	0x0034 00052 (shape-basics/main.go:11)	CALL	main.StoreFirst[go.shape.*uint8](SB)
+	0x0038 00056 (shape-basics/main.go:11)	MOVD	-8(RSP), R29
+	0x003c 00060 (shape-basics/main.go:11)	MOVD.P	64(RSP), R30
+	0x0040 00064 (shape-basics/main.go:11)	RET	(R30)
+	0x0044 00068 (shape-basics/main.go:11)	NOP
+	0x0044 00068 (shape-basics/main.go:11)	PCDATA	$1, $-1
+	0x0044 00068 (shape-basics/main.go:11)	PCDATA	$0, $-2
+	0x0044 00068 (shape-basics/main.go:11)	STP	(R0, R1), 8(RSP)
+	0x0048 00072 (shape-basics/main.go:11)	STP	(R2, R3), 24(RSP)
+	0x004c 00076 (shape-basics/main.go:11)	MOVD	R30, R3
+	0x0050 00080 (shape-basics/main.go:11)	CALL	runtime.morestack_noctxt(SB)
+	0x0054 00084 (shape-basics/main.go:11)	PCDATA	$0, $-1
+	0x0054 00084 (shape-basics/main.go:11)	LDP	8(RSP), (R0, R1)
+	0x0058 00088 (shape-basics/main.go:11)	LDP	24(RSP), (R2, R3)
+	0x005c 00092 (shape-basics/main.go:11)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb e9 01 00 54 fe 0f 1c f8  ..@..c0....T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e0 27 00 f9 e4 03 03 aa  .....#...'......
+	0x0020 e3 03 02 aa e2 03 01 aa e1 03 00 aa 00 00 00 90  ................
+	0x0030 00 00 00 91 00 00 00 94 fd 83 5f f8 fe 07 44 f8  .........._...D.
+	0x0040 c0 03 5f d6 e0 87 00 a9 e2 8f 01 a9 e3 03 1e aa  .._.............
+	0x0050 00 00 00 94 e0 87 40 a9 e2 8f 41 a9 e9 ff ff 17  ......@...A.....
+	rel 44+8 t=R_ADDRARM64 main..dict.StoreFirst[*int]+0
+	rel 52+4 t=R_CALLARM64 main.StoreFirst[go.shape.*uint8]+0
+	rel 80+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.First[go.shape.int] STEXT dupok size=96 args=0x20 locals=0x8 funcid=0x0 align=0x0
+	0x0000 00000 (shape-basics/main.go:6)	TEXT	main.First[go.shape.int](SB), DUPOK|ABIInternal, $16-32
+	0x0000 00000 (shape-basics/main.go:6)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:6)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:6)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:6)	BLS	56
+	0x000c 00012 (shape-basics/main.go:6)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:6)	MOVD.W	R30, -16(RSP)
+	0x0010 00016 (shape-basics/main.go:6)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:6)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:6)	MOVD	R1, main.xs+8(FP)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$0, gclocals·Ih7UaEzxol4qYE7mnpMg6w==(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$5, main.First[go.shape.int].arginfo1(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$6, main.First[go.shape.int].argliveinfo(SB)
+	0x001c 00028 (shape-basics/main.go:6)	PCDATA	$3, $1
+	0x001c 00028 (shape-basics/main.go:7)	CBZ	R2, 48
+	0x0020 00032 (shape-basics/main.go:7)	MOVD	(R1), R0
+	0x0024 00036 (shape-basics/main.go:7)	MOVD	-8(RSP), R29
+	0x0028 00040 (shape-basics/main.go:7)	MOVD.P	16(RSP), R30
+	0x002c 00044 (shape-basics/main.go:7)	RET	(R30)
+	0x0030 00048 (shape-basics/main.go:7)	PCDATA	$1, $1
+	0x0030 00048 (shape-basics/main.go:7)	PCDATA	$4, $0
+	0x0030 00048 (shape-basics/main.go:7)	CALL	runtime.panicBounds(SB)
+	0x0034 00052 (shape-basics/main.go:7)	HINT	$0
+	0x0038 00056 (shape-basics/main.go:7)	NOP
+	0x0038 00056 (shape-basics/main.go:6)	PCDATA	$1, $-1
+	0x0038 00056 (shape-basics/main.go:6)	PCDATA	$0, $-2
+	0x0038 00056 (shape-basics/main.go:6)	STP	(R0, R1), 8(RSP)
+	0x003c 00060 (shape-basics/main.go:6)	STP	(R2, R3), 24(RSP)
+	0x0040 00064 (shape-basics/main.go:6)	MOVD	R30, R3
+	0x0044 00068 (shape-basics/main.go:6)	CALL	runtime.morestack_noctxt(SB)
+	0x0048 00072 (shape-basics/main.go:6)	PCDATA	$0, $-1
+	0x0048 00072 (shape-basics/main.go:6)	LDP	8(RSP), (R0, R1)
+	0x004c 00076 (shape-basics/main.go:6)	LDP	24(RSP), (R2, R3)
+	0x0050 00080 (shape-basics/main.go:6)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb 89 01 00 54 fe 0f 1f f8  ..@..c0....T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e1 13 00 f9 a2 00 00 b4  .....#..........
+	0x0020 20 00 40 f9 fd 83 5f f8 fe 07 41 f8 c0 03 5f d6   .@..._...A..._.
+	0x0030 00 00 00 94 1f 20 03 d5 e0 87 00 a9 e2 8f 01 a9  ..... ..........
+	0x0040 e3 03 1e aa 00 00 00 94 e0 87 40 a9 e2 8f 41 a9  ..........@...A.
+	0x0050 ec ff ff 17 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	rel 48+4 t=R_CALLARM64 runtime.panicBounds+0
+	rel 68+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.First[int] STEXT dupok size=96 args=0x18 locals=0x28 funcid=0x17 align=0x0
+	0x0000 00000 (shape-basics/main.go:6)	TEXT	main.First[int](SB), DUPOK|WRAPPER|ABIInternal, $48-24
+	0x0000 00000 (shape-basics/main.go:6)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:6)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:6)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:6)	BLS	64
+	0x000c 00012 (shape-basics/main.go:6)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:6)	MOVD.W	R30, -48(RSP)
+	0x0010 00016 (shape-basics/main.go:6)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:6)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:6)	MOVD	R0, main.xs(FP)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$0, gclocals·wvjpxkknJ4nY1JtrArJJaw==(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$5, main.First[int].arginfo1(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$6, main.First[int].argliveinfo(SB)
+	0x001c 00028 (shape-basics/main.go:6)	PCDATA	$3, $1
+	0x001c 00028 (shape-basics/main.go:6)	MOVD	R2, R3
+	0x0020 00032 (shape-basics/main.go:6)	MOVD	R1, R2
+	0x0024 00036 (shape-basics/main.go:6)	MOVD	R0, R1
+	0x0028 00040 (shape-basics/main.go:6)	MOVD	$main..dict.First[int](SB), R0
+	0x0030 00048 (shape-basics/main.go:6)	PCDATA	$1, $1
+	0x0030 00048 (shape-basics/main.go:6)	CALL	main.First[go.shape.int](SB)
+	0x0034 00052 (shape-basics/main.go:6)	MOVD	-8(RSP), R29
+	0x0038 00056 (shape-basics/main.go:6)	MOVD.P	48(RSP), R30
+	0x003c 00060 (shape-basics/main.go:6)	RET	(R30)
+	0x0040 00064 (shape-basics/main.go:6)	NOP
+	0x0040 00064 (shape-basics/main.go:6)	PCDATA	$1, $-1
+	0x0040 00064 (shape-basics/main.go:6)	PCDATA	$0, $-2
+	0x0040 00064 (shape-basics/main.go:6)	STP	(R0, R1), 8(RSP)
+	0x0044 00068 (shape-basics/main.go:6)	MOVD	R2, 24(RSP)
+	0x0048 00072 (shape-basics/main.go:6)	MOVD	R30, R3
+	0x004c 00076 (shape-basics/main.go:6)	CALL	runtime.morestack_noctxt(SB)
+	0x0050 00080 (shape-basics/main.go:6)	PCDATA	$0, $-1
+	0x0050 00080 (shape-basics/main.go:6)	LDP	8(RSP), (R0, R1)
+	0x0054 00084 (shape-basics/main.go:6)	MOVD	24(RSP), R2
+	0x0058 00088 (shape-basics/main.go:6)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb c9 01 00 54 fe 0f 1d f8  ..@..c0....T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e0 1f 00 f9 e3 03 02 aa  .....#..........
+	0x0020 e2 03 01 aa e1 03 00 aa 00 00 00 90 00 00 00 91  ................
+	0x0030 00 00 00 94 fd 83 5f f8 fe 07 43 f8 c0 03 5f d6  ......_...C..._.
+	0x0040 e0 87 00 a9 e2 0f 00 f9 e3 03 1e aa 00 00 00 94  ................
+	0x0050 e0 87 40 a9 e2 0f 40 f9 ea ff ff 17 00 00 00 00  ..@...@.........
+	rel 40+8 t=R_ADDRARM64 main..dict.First[int]+0
+	rel 48+4 t=R_CALLARM64 main.First[go.shape.int]+0
+	rel 76+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.First[*string] STEXT dupok size=96 args=0x18 locals=0x28 funcid=0x17 align=0x0
+	0x0000 00000 (shape-basics/main.go:6)	TEXT	main.First[*string](SB), DUPOK|WRAPPER|ABIInternal, $48-24
+	0x0000 00000 (shape-basics/main.go:6)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:6)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:6)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:6)	BLS	64
+	0x000c 00012 (shape-basics/main.go:6)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:6)	MOVD.W	R30, -48(RSP)
+	0x0010 00016 (shape-basics/main.go:6)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:6)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:6)	MOVD	R0, main.xs(FP)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$0, gclocals·wvjpxkknJ4nY1JtrArJJaw==(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$5, main.First[*string].arginfo1(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$6, main.First[*string].argliveinfo(SB)
+	0x001c 00028 (shape-basics/main.go:6)	PCDATA	$3, $1
+	0x001c 00028 (shape-basics/main.go:6)	MOVD	R2, R3
+	0x0020 00032 (shape-basics/main.go:6)	MOVD	R1, R2
+	0x0024 00036 (shape-basics/main.go:6)	MOVD	R0, R1
+	0x0028 00040 (shape-basics/main.go:6)	MOVD	$main..dict.First[*string](SB), R0
+	0x0030 00048 (shape-basics/main.go:6)	PCDATA	$1, $1
+	0x0030 00048 (shape-basics/main.go:6)	CALL	main.First[go.shape.*uint8](SB)
+	0x0034 00052 (shape-basics/main.go:6)	MOVD	-8(RSP), R29
+	0x0038 00056 (shape-basics/main.go:6)	MOVD.P	48(RSP), R30
+	0x003c 00060 (shape-basics/main.go:6)	RET	(R30)
+	0x0040 00064 (shape-basics/main.go:6)	NOP
+	0x0040 00064 (shape-basics/main.go:6)	PCDATA	$1, $-1
+	0x0040 00064 (shape-basics/main.go:6)	PCDATA	$0, $-2
+	0x0040 00064 (shape-basics/main.go:6)	STP	(R0, R1), 8(RSP)
+	0x0044 00068 (shape-basics/main.go:6)	MOVD	R2, 24(RSP)
+	0x0048 00072 (shape-basics/main.go:6)	MOVD	R30, R3
+	0x004c 00076 (shape-basics/main.go:6)	CALL	runtime.morestack_noctxt(SB)
+	0x0050 00080 (shape-basics/main.go:6)	PCDATA	$0, $-1
+	0x0050 00080 (shape-basics/main.go:6)	LDP	8(RSP), (R0, R1)
+	0x0054 00084 (shape-basics/main.go:6)	MOVD	24(RSP), R2
+	0x0058 00088 (shape-basics/main.go:6)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb c9 01 00 54 fe 0f 1d f8  ..@..c0....T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e0 1f 00 f9 e3 03 02 aa  .....#..........
+	0x0020 e2 03 01 aa e1 03 00 aa 00 00 00 90 00 00 00 91  ................
+	0x0030 00 00 00 94 fd 83 5f f8 fe 07 43 f8 c0 03 5f d6  ......_...C..._.
+	0x0040 e0 87 00 a9 e2 0f 00 f9 e3 03 1e aa 00 00 00 94  ................
+	0x0050 e0 87 40 a9 e2 0f 40 f9 ea ff ff 17 00 00 00 00  ..@...@.........
+	rel 40+8 t=R_ADDRARM64 main..dict.First[*string]+0
+	rel 48+4 t=R_CALLARM64 main.First[go.shape.*uint8]+0
+	rel 76+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.First[go.shape.*uint8] STEXT dupok size=96 args=0x20 locals=0x8 funcid=0x0 align=0x0
+	0x0000 00000 (shape-basics/main.go:6)	TEXT	main.First[go.shape.*uint8](SB), DUPOK|ABIInternal, $16-32
+	0x0000 00000 (shape-basics/main.go:6)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:6)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:6)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:6)	BLS	56
+	0x000c 00012 (shape-basics/main.go:6)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:6)	MOVD.W	R30, -16(RSP)
+	0x0010 00016 (shape-basics/main.go:6)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:6)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:6)	MOVD	R1, main.xs+8(FP)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$0, gclocals·Ih7UaEzxol4qYE7mnpMg6w==(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$5, main.First[go.shape.*uint8].arginfo1(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$6, main.First[go.shape.*uint8].argliveinfo(SB)
+	0x001c 00028 (shape-basics/main.go:6)	PCDATA	$3, $1
+	0x001c 00028 (shape-basics/main.go:7)	CBZ	R2, 48
+	0x0020 00032 (shape-basics/main.go:7)	MOVD	(R1), R0
+	0x0024 00036 (shape-basics/main.go:7)	MOVD	-8(RSP), R29
+	0x0028 00040 (shape-basics/main.go:7)	MOVD.P	16(RSP), R30
+	0x002c 00044 (shape-basics/main.go:7)	RET	(R30)
+	0x0030 00048 (shape-basics/main.go:7)	PCDATA	$1, $1
+	0x0030 00048 (shape-basics/main.go:7)	PCDATA	$4, $0
+	0x0030 00048 (shape-basics/main.go:7)	CALL	runtime.panicBounds(SB)
+	0x0034 00052 (shape-basics/main.go:7)	HINT	$0
+	0x0038 00056 (shape-basics/main.go:7)	NOP
+	0x0038 00056 (shape-basics/main.go:6)	PCDATA	$1, $-1
+	0x0038 00056 (shape-basics/main.go:6)	PCDATA	$0, $-2
+	0x0038 00056 (shape-basics/main.go:6)	STP	(R0, R1), 8(RSP)
+	0x003c 00060 (shape-basics/main.go:6)	STP	(R2, R3), 24(RSP)
+	0x0040 00064 (shape-basics/main.go:6)	MOVD	R30, R3
+	0x0044 00068 (shape-basics/main.go:6)	CALL	runtime.morestack_noctxt(SB)
+	0x0048 00072 (shape-basics/main.go:6)	PCDATA	$0, $-1
+	0x0048 00072 (shape-basics/main.go:6)	LDP	8(RSP), (R0, R1)
+	0x004c 00076 (shape-basics/main.go:6)	LDP	24(RSP), (R2, R3)
+	0x0050 00080 (shape-basics/main.go:6)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb 89 01 00 54 fe 0f 1f f8  ..@..c0....T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e1 13 00 f9 a2 00 00 b4  .....#..........
+	0x0020 20 00 40 f9 fd 83 5f f8 fe 07 41 f8 c0 03 5f d6   .@..._...A..._.
+	0x0030 00 00 00 94 1f 20 03 d5 e0 87 00 a9 e2 8f 01 a9  ..... ..........
+	0x0040 e3 03 1e aa 00 00 00 94 e0 87 40 a9 e2 8f 41 a9  ..........@...A.
+	0x0050 ec ff ff 17 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	rel 48+4 t=R_CALLARM64 runtime.panicBounds+0
+	rel 68+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.First[*int] STEXT dupok size=96 args=0x18 locals=0x28 funcid=0x17 align=0x0
+	0x0000 00000 (shape-basics/main.go:6)	TEXT	main.First[*int](SB), DUPOK|WRAPPER|ABIInternal, $48-24
+	0x0000 00000 (shape-basics/main.go:6)	MOVD	16(g), R16
+	0x0004 00004 (shape-basics/main.go:6)	PCDATA	$0, $-2
+	0x0004 00004 (shape-basics/main.go:6)	CMP	R16, RSP
+	0x0008 00008 (shape-basics/main.go:6)	BLS	64
+	0x000c 00012 (shape-basics/main.go:6)	PCDATA	$0, $-1
+	0x000c 00012 (shape-basics/main.go:6)	MOVD.W	R30, -48(RSP)
+	0x0010 00016 (shape-basics/main.go:6)	MOVD	R29, -8(RSP)
+	0x0014 00020 (shape-basics/main.go:6)	SUB	$8, RSP, R29
+	0x0018 00024 (shape-basics/main.go:6)	MOVD	R0, main.xs(FP)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$0, gclocals·wvjpxkknJ4nY1JtrArJJaw==(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$1, gclocals·J26BEvPExEQhJvjp9E8Whg==(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$5, main.First[*int].arginfo1(SB)
+	0x001c 00028 (shape-basics/main.go:6)	FUNCDATA	$6, main.First[*int].argliveinfo(SB)
+	0x001c 00028 (shape-basics/main.go:6)	PCDATA	$3, $1
+	0x001c 00028 (shape-basics/main.go:6)	MOVD	R2, R3
+	0x0020 00032 (shape-basics/main.go:6)	MOVD	R1, R2
+	0x0024 00036 (shape-basics/main.go:6)	MOVD	R0, R1
+	0x0028 00040 (shape-basics/main.go:6)	MOVD	$main..dict.First[*int](SB), R0
+	0x0030 00048 (shape-basics/main.go:6)	PCDATA	$1, $1
+	0x0030 00048 (shape-basics/main.go:6)	CALL	main.First[go.shape.*uint8](SB)
+	0x0034 00052 (shape-basics/main.go:6)	MOVD	-8(RSP), R29
+	0x0038 00056 (shape-basics/main.go:6)	MOVD.P	48(RSP), R30
+	0x003c 00060 (shape-basics/main.go:6)	RET	(R30)
+	0x0040 00064 (shape-basics/main.go:6)	NOP
+	0x0040 00064 (shape-basics/main.go:6)	PCDATA	$1, $-1
+	0x0040 00064 (shape-basics/main.go:6)	PCDATA	$0, $-2
+	0x0040 00064 (shape-basics/main.go:6)	STP	(R0, R1), 8(RSP)
+	0x0044 00068 (shape-basics/main.go:6)	MOVD	R2, 24(RSP)
+	0x0048 00072 (shape-basics/main.go:6)	MOVD	R30, R3
+	0x004c 00076 (shape-basics/main.go:6)	CALL	runtime.morestack_noctxt(SB)
+	0x0050 00080 (shape-basics/main.go:6)	PCDATA	$0, $-1
+	0x0050 00080 (shape-basics/main.go:6)	LDP	8(RSP), (R0, R1)
+	0x0054 00084 (shape-basics/main.go:6)	MOVD	24(RSP), R2
+	0x0058 00088 (shape-basics/main.go:6)	JMP	0
+	0x0000 90 0b 40 f9 ff 63 30 eb c9 01 00 54 fe 0f 1d f8  ..@..c0....T....
+	0x0010 fd 83 1f f8 fd 23 00 d1 e0 1f 00 f9 e3 03 02 aa  .....#..........
+	0x0020 e2 03 01 aa e1 03 00 aa 00 00 00 90 00 00 00 91  ................
+	0x0030 00 00 00 94 fd 83 5f f8 fe 07 43 f8 c0 03 5f d6  ......_...C..._.
+	0x0040 e0 87 00 a9 e2 0f 00 f9 e3 03 1e aa 00 00 00 94  ................
+	0x0050 e0 87 40 a9 e2 0f 40 f9 ea ff ff 17 00 00 00 00  ..@...@.........
+	rel 40+8 t=R_ADDRARM64 main..dict.First[*int]+0
+	rel 48+4 t=R_CALLARM64 main.First[go.shape.*uint8]+0
+	rel 76+4 t=R_CALLARM64 runtime.morestack_noctxt+0
+main.Greet[*main.UserB].arginfo1 SRODATA static dupok size=1
+	0x0000 ff                                               .
+main.Greet[*main.UserB].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.Greet[go.shape.*uint8].arginfo1 SRODATA static dupok size=3
+	0x0000 08 08 ff                                         ...
+main.Greet[go.shape.*uint8].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.Greet[*main.UserA].arginfo1 SRODATA static dupok size=1
+	0x0000 ff                                               .
+main.Greet[*main.UserA].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.StoreFirst[go.shape.int].arginfo1 SRODATA static dupok size=11
+	0x0000 fe 08 08 10 08 18 08 fd 20 08 ff                 ........ ..
+main.StoreFirst[go.shape.int].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.StoreFirst[int].arginfo1 SRODATA static dupok size=3
+	0x0000 18 08 ff                                         ...
+main.StoreFirst[int].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.StoreFirst[*string].arginfo1 SRODATA static dupok size=3
+	0x0000 18 08 ff                                         ...
+main.StoreFirst[*string].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.StoreFirst[go.shape.*uint8].arginfo1 SRODATA static dupok size=11
+	0x0000 fe 08 08 10 08 18 08 fd 20 08 ff                 ........ ..
+main.StoreFirst[go.shape.*uint8].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.StoreFirst[*int].arginfo1 SRODATA static dupok size=3
+	0x0000 18 08 ff                                         ...
+main.StoreFirst[*int].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.First[go.shape.int].arginfo1 SRODATA static dupok size=9
+	0x0000 fe 08 08 10 08 18 08 fd ff                       .........
+main.First[go.shape.int].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.First[int].arginfo1 SRODATA static dupok size=1
+	0x0000 ff                                               .
+main.First[int].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.First[*string].arginfo1 SRODATA static dupok size=1
+	0x0000 ff                                               .
+main.First[*string].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.First[go.shape.*uint8].arginfo1 SRODATA static dupok size=9
+	0x0000 fe 08 08 10 08 18 08 fd ff                       .........
+main.First[go.shape.*uint8].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
+main.First[*int].arginfo1 SRODATA static dupok size=1
+	0x0000 ff                                               .
+main.First[*int].argliveinfo SRODATA static dupok size=2
+	0x0000 00 00                                            ..
